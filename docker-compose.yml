@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+  db:
+    image: postgres:15.3-alpine3.17
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=nicki
+      - POSTGRES_USER=nicki
+      - POSTGRES_DB=meow

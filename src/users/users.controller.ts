@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { User } from '@prisma/client';
 import { CreateUserDTO, UpdateUserDTO } from './dto/users.dto';
 import { UsersService } from './users.service';
 
@@ -22,8 +23,8 @@ export class UsersController {
 
   //Create name: string
   @Post()
-  insert(@Body() userBody: CreateUserDTO) {
-    return this.usersService.insert(userBody.name);
+  insert(@Body() userBody: User) {
+    return this.usersService.insert(userBody);
   }
 
   //Update => name

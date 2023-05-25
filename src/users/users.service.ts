@@ -1,4 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { User } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { IUsers } from './interface/users.interface';
 
 @Injectable()
@@ -8,15 +10,18 @@ export class UsersService {
     { id: 2, name: 'Sarah' },
   ];
 
+  constructor(private prisma: PrismaService) {}
+
   findAll(): IUsers[] {
     return this.users;
   }
 
-  insert(name: string) {
-    const id = this.users[this.users.length - 1].id + 1;
-    const user = { id, name };
-    this.users.push(user);
-    return { message: 'success' };
+  insert(data: User) {
+    // const id = this.users[this.users.length - 1].id + 1;
+    // const user = { id, name };
+    // this.users.push(user);
+    // return { message: 'success' };
+    return this.prisma.user.create({ data });
   }
 
   update(id: number, name: string) {
